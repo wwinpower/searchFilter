@@ -1,15 +1,18 @@
 import {Component} from '@angular/core';
 
+
 @Component({
     selector: 'app-root',
     template: `
         <div class="container">
          <div class="row justify-content-center">
             <div class="col-6">
+                <h1>{{ asyncTitle }}</h1>
                <input type="text" class="form-control mb-4 mt-4" [(ngModel)]="searchCar">
+               <button class="btn btn-primary" (click)="addCar()">Creat</button>
                 <hr>
                 <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let car of cars | carFilter:searchCar:'desc'; let i = index">
+                    <li class="list-group-item" *ngFor="let car of cars | carFilter:searchCar:'name'; let i = index">
                         <b>{{i+1}}</b> - {{car.name }} <i>{{car.desc }}</i>
                     </li>
                 </ul>
@@ -28,5 +31,12 @@ export class AppComponent {
         {name: 'Jeep', desc: 'WinPower 5'},
         {name: 'Mazda', desc: 'WinPower 6'},
         {name: 'Vaz', desc: 'WinPower 7'}
-    ]
+    ];
+
+    addCar() {
+        this.cars.push({
+            name: 'New Car',
+            desc: 'WPR'
+        });
+    }
 }
